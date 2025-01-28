@@ -1,0 +1,151 @@
+---
+title: "Test MDX Syntax in Markdown 'md' File"
+author: "markdown"
+date: Apr 19, 2024
+summary: "summary test markdown"
+---
+
+In this blog post, we will explore a way to enhance your npm and npx commands by conditionally using `bun` if it is installed. This can provide a faster and more efficient package management experience. We'll go through a simple shell script that achieves this and explain how it works.
+
+## Overview
+
+Bun is a modern JavaScript runtime that includes a fast package manager. By conditionally using `bun` for npm and npx commands, we can take advantage of its speed improvements. The shell script provided below checks if `bun` is installed and then modifies the behavior of npm and npx commands accordingly.
+
+## Why use Bun instead of npm and npx?
+
+Before we dive into the script, let's discuss why you might want to use Bun instead npm and npx for local development:
+
+1. **Default npm Suggestions**:
+
+- When you visit the documentation or installation instructions for most npm packages, the default command provided is typically `npm install package-name`. This makes it easier and faster to copy and paste the command without needing to switch to an alternative like `bun` or `pnpm`.
+- Example:
+
+```sh
+npm install express
+```
+
+2. **Speed Improvements**:
+
+- Bun is designed to be a faster alternative to npm and npx. By using Bun, you can significantly reduce the time it takes to install and execute packages, leading to a more efficient development workflow.
+- Example: Installing a package using Bun might look like:
+
+```sh
+bun install express
+```
+
+3. **Compatibility**:
+
+- By conditionally using Bun, you can maintain compatibility with existing npm scripts and workflows while taking advantage of Bun's performance benefits when available.
+- Example: Running a script with Bun:
+
+```sh
+bun run start
+```
+
+4. **Flexibility**:
+
+- This script allows you to easily switch between using Bun and the traditional npm/npx commands based on your needs. If you need to use the original npm or npx for any reason, you can do so with a simple flag (`--real`) or environment variable.
+- Example: Using the original npm with the script:
+
+```sh
+npm install express --real
+```
+
+## The Shell Script
+
+Here is the shell script that enhances npm and npx commands:
+
+```sh
+if command -v bun &>/dev/null; then
+  npm() {
+    if [[ "$*" == *"--real"* ]] || [[ -n "$USE_REAL_NPM" ]]; then
+      export USE_REAL_NPM=1
+      trap 'unset USE_REAL_NPM' EXIT
+      command npm "${@/--real/}"
+    else
+      bun "$@"
+    fi
+  }
+  npx() {
+    if [[ "$*" == *"--real"* ]] || [[ -n "$USE_REAL_NPX" ]]; then
+      export USE_REAL_NPX=1
+      trap 'unset USE_REAL_NPX' EXIT
+      command npx "${@/--real/}"
+    else
+      bunx "$@"
+    fi
+  }
+else
+  npm() {
+    command npm "$@"
+  }
+  npx() {
+    command npx "$@"
+  }
+fi
+```
+
+## How It Works
+
+Let's break down how this script works:
+
+1. **Checking for Bun**:
+
+First, the script checks if `bun` is installed on your system by using the command `command -v bun &>/dev/null`. If `bun` is found, it proceeds to redefine the `npm` and `npx` commands.
+
+2. **Redefining npm and npx**:
+
+- **Custom `npm` Function**: The script creates a new `npm` function. This function first checks if the command being run contains `--real` or if the `USE_REAL_NPM` environment variable is set.
+  - If `--real` is present or `USE_REAL_NPM` is set, it temporarily sets the `USE_REAL_NPM` variable, installs a `trap` to unset this variable upon exit, and then calls the original `npm` command by removing the `--real` flag from the arguments.
+  - If `--real` is not present, it uses `bun` to execute the command.
+- **Custom `npx` Function**: Similarly, a new `npx` function is defined. It follows the same logic as the `npm` function but uses `bunx` instead of `bun` to execute the command.
+
+3. **Fallback to Original Commands**:
+
+If `bun` is not installed, the script simply defines the `npm` and `npx` functions to call the original commands without any modification.
+
+## Usage
+
+To use this script, you can add it to your shell configuration file (e.g., `.bashrc`, `.zshrc`, or `.profile`). This will ensure that the modified `npm` and `npx` commands are available in your terminal sessions.
+
+```sh
+if command -v bun &>/dev/null; then
+  npm() {
+    if [[ "$*" == *"--real"* ]] || [[ -n "$USE_REAL_NPM" ]]; then
+      export USE_REAL_NPM=1
+      trap 'unset USE_REAL_NPM' EXIT
+      command npm "${@/--real/}"
+    else
+      bun "$@"
+    fi
+  }
+  npx() {
+    if [[ "$*" == *"--real"* ]] || [[ -n "$USE_REAL_NPX" ]]; then
+      export USE_REAL_NPX=1
+      trap 'unset USE_REAL_NPX' EXIT
+      command npx "${@/--real/}"
+    else
+      bunx "$@"
+    fi
+  }
+else
+  npm() {
+    command npm "$@"
+  }
+  npx() {
+    command npx "$@"
+  }
+fi
+```
+
+After adding the script, restart your terminal or source the configuration file to apply the changes:
+
+```sh
+source ~/.zshrc  # or appropriate file for your shell
+```
+
+## Conclusion
+
+By using this simple shell script, you can enhance your npm and npx commands to take advantage of `bun` if it is installed. This can lead to faster package management and a more efficient development workflow. Give it a try and see how it improves your experience!
+
+Happy coding!
