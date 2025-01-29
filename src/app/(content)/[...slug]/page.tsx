@@ -6,6 +6,7 @@ import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
+import remarkToc from "remark-toc"
 import { visit } from "unist-util-visit"
 
 export default async function Page({
@@ -26,7 +27,7 @@ export default async function Page({
   return (
     <Markdown
       className="prose mx-auto max-w-screen-md p-5"
-      remarkPlugins={[remarkFrontmatter, remarkGfm]}
+      remarkPlugins={[remarkFrontmatter, remarkGfm, remarkToc]}
       rehypePlugins={[
         rehypeRaw,
         () => (tree) => {
