@@ -1,20 +1,29 @@
-"use client"
+import { useCallback, useState } from "react"
 
-import { useState } from "react"
+type CopiedValue = string | null
 
-export const useCopy = () => {
-  const [isCopied, setIsCopied] = useState(false)
+type CopyFn = (text: string) => Promise<boolean>
 
-  const copy = async (text: string) => {
+export function useCopyToClipboard(): [CopiedValue, CopyFn] {
+  const [copiedText, setCopiedText] = useState<CopiedValue>(null)
+
+  const copy: CopyFn = useCallback(async (text) => {
+    if (!navigator?.clipboard) {
+      console.warn("Clipboard not supported")
+      return false
+    }
+
+    // Try to save to clipboard then save it in the state if worked
     try {
       await navigator.clipboard.writeText(text)
-      setIsCopied(true)
-      setTimeout(() => setIsCopied(false), 2000)
+      setCopiedText(text)
+      return true
     } catch (error) {
-      console.error("Failed to copy text: ", error)
-      setIsCopied(false)
+      console.warn("Copy failed", error)
+      setCopiedText(null)
+      return false
     }
-  }
+  }, [])
 
-  return [isCopied, copy] as const
+  return [copiedText, copy]
 }

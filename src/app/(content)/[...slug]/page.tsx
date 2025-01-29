@@ -1,4 +1,5 @@
 import "@/app/hljs.css"
+import Code from "@/components/mdx/code"
 import { getSourceBySlug } from "@/utils/file"
 import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
@@ -24,7 +25,7 @@ export default async function Page({
 
   return (
     <Markdown
-      className="prose"
+      className="prose mx-auto max-w-screen-md p-5"
       remarkPlugins={[remarkFrontmatter, remarkGfm]}
       rehypePlugins={[
         rehypeRaw,
@@ -44,6 +45,9 @@ export default async function Page({
         },
         rehypeHighlight,
       ]}
+      components={{
+        code: ({ children, ...props }) => <Code {...props}>{children}</Code>,
+      }}
     >
       {source}
     </Markdown>

@@ -107,14 +107,6 @@ Some people seem to like definition lists
   <dd>We've changed the product so that it's much easier to use!</dd>
 </dl>
 
-## I am a robot
-
-Maybe you want to print `robot` to the console 1000 times. Why not?
-
-    def robot_invasion
-      puts("robot " * 1000)
-    end
-
 You see, that was formatted as code because it's been indented by four spaces.
 
 How about we throw some angle braces and ampersands in there?
@@ -183,3 +175,13 @@ I get 10 times more traffic from [Google] [1] than from
 [1]: http://google.com/ "Google"
 [2]: http://search.yahoo.com/ "Yahoo Search"
 [3]: http://search.msn.com/ "MSN Search"
+
+## I am a robot
+
+Maybe you want to print `robot` to the console 1000 times. Why not?
+
+```python
+def robot_invasion
+  puts("robot " \* 1000)
+end
+```
