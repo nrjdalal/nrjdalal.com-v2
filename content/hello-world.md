@@ -119,9 +119,11 @@ You see, that was formatted as code because it's been indented by four spaces.
 
 How about we throw some angle braces and ampersands in there?
 
-    <div class="footer">
-        &copy; 2004 Foo Corporation
-    </div>
+```html
+<blockquote>
+  <p>For example, <code>&lt;section&gt;</code> should be wrapped as inline.</p>
+</blockquote>
+```
 
 ## Set in stone
 

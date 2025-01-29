@@ -27,25 +27,22 @@ export default async function Page({
       className="prose"
       remarkPlugins={[remarkFrontmatter, remarkGfm]}
       rehypePlugins={[
+        rehypeRaw,
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
+              node.properties.className = [
+                "not-prose",
+                ...(node.properties.className || []),
+              ]
               const [codeElement] = node.children
               if (codeElement.tagName !== "code") return
-              node.__raw__ = codeElement.children[0]?.value
+              node.children.at(-1).properties["__raw__"] =
+                codeElement.children[0]?.value
             }
           })
         },
         rehypeHighlight,
-        () => (tree) => {
-          visit(tree, (node) => {
-            if (node?.type === "element" && node?.tagName === "pre") {
-              const preElement = node.children.at(-1)
-              preElement.properties["__raw__"] = node.__raw__
-            }
-          })
-        },
-        rehypeRaw,
       ]}
     >
       {source}
