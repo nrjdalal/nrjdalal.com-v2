@@ -1,7 +1,7 @@
 import "@/app/hljs.css"
 import { getSourceBySlug } from "@/utils/file"
 import Markdown from "react-markdown"
-import rehypeHighlight from "rehype-highlight" // Import rehype-highlight
+import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
