@@ -30,6 +30,8 @@ export default async function Page({
       className="prose mx-auto max-w-screen-md p-5"
       remarkPlugins={[remarkFrontmatter, remarkGfm, remarkToc]}
       rehypePlugins={[
+        rehypeSlug,
+        rehypeRaw,
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
@@ -44,9 +46,7 @@ export default async function Page({
             }
           })
         },
-        rehypeSlug,
         rehypeHighlight,
-        rehypeRaw,
       ]}
       components={{
         code: ({ children, ...props }) => <Code {...props}>{children}</Code>,
