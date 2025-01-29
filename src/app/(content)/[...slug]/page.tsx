@@ -1,5 +1,10 @@
 import { getSourceBySlug } from "@/utils/file"
 import Markdown from "react-markdown"
+import rehypeHighlight from "rehype-highlight" // Import rehype-highlight
+import rehypeRaw from "rehype-raw"
+import remarkFrontmatter from "remark-frontmatter"
+import remarkGfm from "remark-gfm"
+import "./hljs.css"
 
 export default async function Page({
   params,
@@ -16,5 +21,13 @@ export default async function Page({
 
   const { source } = result
 
-  return <Markdown className="text-red-500">{source}</Markdown>
+  return (
+    <Markdown
+      className="prose"
+      remarkPlugins={[remarkFrontmatter, remarkGfm]}
+      rehypePlugins={[rehypeRaw, rehypeHighlight]}
+    >
+      {source}
+    </Markdown>
+  )
 }
