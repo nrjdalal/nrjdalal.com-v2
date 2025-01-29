@@ -4,6 +4,7 @@ import { getSourceBySlug } from "@/utils/file"
 import Markdown from "react-markdown"
 import rehypeHighlight from "rehype-highlight"
 import rehypeRaw from "rehype-raw"
+import rehypeSlug from "rehype-slug"
 import remarkFrontmatter from "remark-frontmatter"
 import remarkGfm from "remark-gfm"
 import remarkToc from "remark-toc"
@@ -29,7 +30,6 @@ export default async function Page({
       className="prose mx-auto max-w-screen-md p-5"
       remarkPlugins={[remarkFrontmatter, remarkGfm, remarkToc]}
       rehypePlugins={[
-        rehypeRaw,
         () => (tree) => {
           visit(tree, (node) => {
             if (node?.type === "element" && node?.tagName === "pre") {
@@ -44,7 +44,9 @@ export default async function Page({
             }
           })
         },
+        rehypeSlug,
         rehypeHighlight,
+        rehypeRaw,
       ]}
       components={{
         code: ({ children, ...props }) => <Code {...props}>{children}</Code>,
