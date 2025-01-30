@@ -12,9 +12,11 @@ import {
 import { cn } from "@/lib/utils"
 import {
   RiArrowLeftLongLine,
+  RiArrowUpSLine,
   RiBrushAiFill,
   RiCodeAiFill,
   RiGithubFill,
+  RiLinkedinBoxFill,
   RiMenu4Fill,
   RiTwitterXFill,
 } from "@remixicon/react"
@@ -65,6 +67,7 @@ const uiNavItems = [
 
 const socialLinks = [
   { href: "https://github.com/nrjdalal", icon: RiGithubFill },
+  { href: "https://www.linkedin.com/in/nrjdalal", icon: RiLinkedinBoxFill },
   { href: "https://x.com/nrjdalal_com", icon: RiTwitterXFill },
 ]
 
@@ -104,7 +107,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
                 doesPathMatchHref(pathname, item.href)
                   ? hoveredItem && hoveredItem !== item.href
                     ? "w-0 duration-1000"
-                    : "w-full duration-200"
+                    : "w-full duration-500"
                   : "w-0 duration-1000 group-hover:w-[90%]",
               )}
             />
@@ -115,9 +118,11 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
             key={link.href}
             href={link.href}
             target="_blank"
-            className="hover:text-foreground hover:border-foreground flex aspect-square h-full items-center justify-center hover:border-t-2 hover:border-r-2 hover:pb-[2px] hover:pl-[1px]"
+            className="hover:text-foreground group relative flex aspect-square h-full items-center justify-center"
           >
             <link.icon className="size-6" />
+            <RiArrowUpSLine className="absolute top-0 right-0 size-4 rotate-45 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+            <span className="bg-foreground absolute bottom-0 left-0 h-[2px] w-0 transition-all duration-500 ease-in-out group-hover:w-full" />
           </Link>
         ))}
         <ThemeToggle />
@@ -136,7 +141,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
             <span className="bg-border absolute bottom-14 left-0 h-px w-full" />
             <span className="bg-border absolute -top-14 left-14 h-full w-px" />
             <span className="bg-border absolute right-14 bottom-0 h-full w-px" />
-            <span className="text-foreground/50 absolute -right-8 bottom-48 flex rotate-270 items-center gap-x-2 text-xs">
+            <span className="text-foreground/50 absolute -right-8.5 bottom-48 flex rotate-270 items-center gap-x-2 text-xs">
               <RiArrowLeftLongLine className="size-3.5" /> Switch dark mode
             </span>
             <span className="absolute right-0 bottom-14 aspect-square h-14">
@@ -148,11 +153,25 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
                   key={item.name}
                   href={item.href}
                   className={cn(
-                    "hover:bg-border/50 flex h-14 w-full cursor-pointer items-center justify-center px-5",
-                    doesPathMatchHref(pathname, item.href) && "bg-border/50",
+                    "group relative flex h-14 w-full items-center justify-center px-7.5",
+                    doesPathMatchHref(pathname, item.href)
+                      ? "text-foreground"
+                      : "hover:text-foreground",
                   )}
+                  onMouseEnter={() => setHoveredItem(item.href)}
+                  onMouseLeave={() => setHoveredItem(null)}
                 >
-                  <p>{item.name}</p>
+                  {item.name}
+                  <span
+                    className={cn(
+                      "bg-border/50 absolute left-0 -z-10 h-14 transition-all ease-in-out",
+                      doesPathMatchHref(pathname, item.href)
+                        ? hoveredItem && hoveredItem !== item.href
+                          ? "w-0 duration-1000"
+                          : "w-full duration-1000"
+                        : "w-0 duration-1000 group-hover:w-[95%]",
+                    )}
+                  />
                 </Link>
               ))}
               <div className="flex h-14">
@@ -161,9 +180,11 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
                     key={link.href}
                     href={link.href}
                     target="_blank"
-                    className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center px-5"
+                    className="hover:text-foreground group relative flex aspect-square h-full items-center justify-center"
                   >
                     <link.icon className="size-6" />
+                    <RiArrowUpSLine className="absolute top-0 right-0 size-4 rotate-45 opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                    <span className="bg-foreground absolute bottom-0 left-0 h-[2px] w-0 transition-all duration-500 ease-in-out group-hover:w-full" />
                   </Link>
                 ))}
               </div>
