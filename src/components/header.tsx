@@ -10,14 +10,11 @@ import {
 } from "@remixicon/react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState } from "react"
+import { FC, useState } from "react"
 
-// Utility function to check if the path matches the navigation href
-const doesPathMatchHref = (pathname, href) => {
-  // Remove any anchor or query parameters from the pathname
+const doesPathMatchHref = (pathname: string, href: string): boolean => {
   const cleanedPathname = pathname.split(/[?#]/)[0]
 
-  // Exact match for home route
   if (href === "/") {
     return (
       cleanedPathname === "/" ||
@@ -26,12 +23,10 @@ const doesPathMatchHref = (pathname, href) => {
     )
   }
 
-  // Exact match or match with #anchor or ?query for specific routes
   if (href === cleanedPathname) {
     return true
   }
 
-  // For route `/ui`, it should only match exactly with `/ui` or `/ui#` or `/ui?`
   if (href === "/ui") {
     return (
       cleanedPathname === "/ui" ||
@@ -40,7 +35,6 @@ const doesPathMatchHref = (pathname, href) => {
     )
   }
 
-  // Match for routes with /slug
   const regex = new RegExp(`^${href}/[^/]+.*$`)
   return regex.test(cleanedPathname)
 }
@@ -64,18 +58,17 @@ const socialLinks = [
   { href: "https://x.com/nrjdalal_com", icon: RiTwitterXFill },
 ]
 
-const NavigationLinks = ({
+interface NavigationLinksProps {
+  items: { name: string; href: string }[]
+  hoveredItem: string | null
+  setHoveredItem: (item: string | null) => void
+}
+
+const NavigationLinks: FC<NavigationLinksProps> = ({
   items,
   hoveredItem,
   setHoveredItem,
-}: Readonly<{
-  items: {
-    name: string
-    href: string
-  }[]
-  hoveredItem: string | null
-  setHoveredItem: (item: string | null) => void
-}>) => {
+}) => {
   const pathname = usePathname()
 
   return (
@@ -96,12 +89,12 @@ const NavigationLinks = ({
           {item.name}
           <span
             className={cn(
-              "bg-foreground absolute bottom-0 left-0 h-[2px] transition-all duration-1000 ease-in-out",
+              "bg-foreground absolute bottom-0 left-0 h-[2px] transition-all ease-in-out",
               doesPathMatchHref(pathname, item.href)
                 ? hoveredItem && hoveredItem !== item.href
-                  ? "w-0"
-                  : "w-full"
-                : "w-0 group-hover:w-[90%]",
+                  ? "w-0 duration-1000"
+                  : "w-full duration-200"
+                : "w-0 duration-1000 group-hover:w-[90%]",
             )}
           />
         </Link>
@@ -121,7 +114,7 @@ const NavigationLinks = ({
   )
 }
 
-export default function Component() {
+const Component: FC = () => {
   const pathname = usePathname()
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
@@ -181,3 +174,5 @@ export default function Component() {
     </div>
   )
 }
+
+export default Component
