@@ -1,4 +1,6 @@
 import { fontMono, fontSans } from "@/assets/fonts"
+import Header from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
 import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
 import "./globals.css"
@@ -17,12 +19,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-dvh bg-black font-sans antialiased",
+          "min-h-dvh font-sans antialiased",
           fontSans.variable,
           fontMono.variable,
         )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   )
