@@ -16,19 +16,23 @@ const socialLinks = [
 
 export default function Component() {
   return (
-    <div className="sticky top-0 flex h-14 w-full justify-between border-b">
-      <div className="hover:bg-border/50 flex h-full min-w-64 cursor-pointer items-center justify-center gap-x-2 border-r px-5">
+    <div className="bg-background sticky top-0 z-50 flex h-14 w-full justify-between border-b">
+      <Link
+        href="/"
+        className="hover:bg-border/50 flex h-full min-w-64 cursor-pointer items-center justify-center gap-x-2 border-r px-5"
+      >
         <RiCodeAiFill className="size-6" />
         <p className="font-mono">NRJDALAL.COM</p>
-      </div>
+      </Link>
       <div className="text-muted-foreground flex cursor-pointer items-center divide-x font-medium">
         {navItems.map((item) => (
-          <div
+          <Link
             key={item.name}
+            href={item.href}
             className="hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]"
           >
             {item.name}
-          </div>
+          </Link>
         ))}
         {socialLinks.map((link) => (
           <Link
