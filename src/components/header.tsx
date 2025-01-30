@@ -32,11 +32,11 @@ const doesPathMatchHref = (pathname, href) => {
   }
 
   // For route `/ui`, it should only match exactly with `/ui` or `/ui#` or `/ui?`
-  if (href === "/ui" && cleanedPathname === "/ui") {
+  if (href === "/ui") {
     return (
+      cleanedPathname === "/ui" ||
       pathname.startsWith("/ui#") ||
-      pathname.startsWith("/ui?") ||
-      pathname === "/ui"
+      pathname.startsWith("/ui?")
     )
   }
 
