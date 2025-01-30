@@ -130,7 +130,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
             <DrawerTitle>Menu</DrawerTitle>
             <DrawerDescription>Navigation links</DrawerDescription>
           </DrawerHeader>
-          <div className="mx-auto flex w-full max-w-sm flex-col items-center gap-y-2 p-5">
+          <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-y-2 p-5">
             {items.map((item) => (
               <Link
                 key={item.name}
@@ -149,7 +149,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
                   key={link.href}
                   href={link.href}
                   target="_blank"
-                  className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center gap-x-2 px-5"
+                  className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center gap-x-2 rounded-md px-5"
                 >
                   <link.icon className="size-6" />
                 </Link>
