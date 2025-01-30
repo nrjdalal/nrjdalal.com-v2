@@ -30,6 +30,46 @@ const socialLinks = [
   { href: "https://x.com/nrjdalal_com", icon: RiTwitterXFill },
 ]
 
+const NavigationLinks = ({
+  items,
+}: Readonly<{
+  items: {
+    name: string
+    href: string
+  }[]
+}>) => {
+  const pathname = usePathname()
+
+  return (
+    <div className="text-muted-foreground flex cursor-pointer items-center divide-x font-medium">
+      {items.map((item) => (
+        <Link
+          key={item.name}
+          href={item.href}
+          className={cn(
+            "hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]",
+            pathname === item.href &&
+              "text-foreground border-b-foreground border-b-2 pt-[2px]",
+          )}
+        >
+          {item.name}
+        </Link>
+      ))}
+      {socialLinks.map((link) => (
+        <Link
+          key={link.href}
+          href={link.href}
+          target="_blank"
+          className="hover:text-foreground hover:border-foreground flex aspect-square h-full items-center justify-center hover:border-t-2 hover:border-r-2 hover:pb-[2px] hover:pl-[1px]"
+        >
+          <link.icon className="size-6" />
+        </Link>
+      ))}
+      <ThemeToggle />
+    </div>
+  )
+}
+
 export default function Component() {
   const pathname = usePathname()
 
@@ -72,72 +112,8 @@ export default function Component() {
         </Link>
       </div>
 
-      <div
-        className={cn(
-          "text-muted-foreground flex cursor-pointer items-center divide-x font-medium",
-          pathname.startsWith("/ui") && "hidden",
-        )}
-      >
-        {navItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className={cn(
-              "hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]",
-              pathname === item.href &&
-                "text-foreground border-b-foreground border-b-2 pt-[2px]",
-            )}
-          >
-            {item.name}
-          </Link>
-        ))}
-        {socialLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            target="_blank"
-            className="hover:text-foreground hover:border-foreground flex aspect-square h-full items-center justify-center hover:border-t-2 hover:border-r-2 hover:pb-[2px] hover:pl-[1px]"
-          >
-            <link.icon className="size-6" />
-          </Link>
-        ))}
-
-        <ThemeToggle />
-      </div>
-
-      <div
-        className={cn(
-          "hidden",
-          pathname.startsWith("/ui") &&
-            "text-muted-foreground flex cursor-pointer items-center divide-x font-medium",
-        )}
-      >
-        {uiNavItems.map((item) => (
-          <Link
-            key={item.name}
-            href={item.href}
-            className={cn(
-              "hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]",
-              pathname === item.href &&
-                "text-foreground border-b-foreground border-b-2 pt-[2px]",
-            )}
-          >
-            {item.name}
-          </Link>
-        ))}
-        {socialLinks.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            target="_blank"
-            className="hover:text-foreground hover:border-foreground flex aspect-square h-full items-center justify-center hover:border-t-2 hover:border-r-2 hover:pb-[2px] hover:pl-[1px]"
-          >
-            <link.icon className="size-6" />
-          </Link>
-        ))}
-
-        <ThemeToggle />
-      </div>
+      {!pathname.startsWith("/ui") && <NavigationLinks items={navItems} />}
+      {pathname.startsWith("/ui") && <NavigationLinks items={uiNavItems} />}
     </div>
   )
 }
