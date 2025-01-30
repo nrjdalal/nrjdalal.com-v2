@@ -239,20 +239,11 @@ const Component: FC = () => {
         </Link>
       </div>
 
-      {!pathname.startsWith("/ui") && (
-        <NavigationLinks
-          items={navItems}
-          hoveredItem={hoveredItem}
-          setHoveredItem={setHoveredItem}
-        />
-      )}
-      {pathname.startsWith("/ui") && (
-        <NavigationLinks
-          items={uiNavItems}
-          hoveredItem={hoveredItem}
-          setHoveredItem={setHoveredItem}
-        />
-      )}
+      <NavigationLinks
+        items={pathname.startsWith("/ui") ? uiNavItems : navItems}
+        hoveredItem={hoveredItem}
+        setHoveredItem={setHoveredItem}
+      />
     </div>
   )
 }
