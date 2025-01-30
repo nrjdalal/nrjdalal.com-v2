@@ -130,31 +130,39 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
             <DrawerTitle>Menu</DrawerTitle>
             <DrawerDescription>Navigation links</DrawerDescription>
           </DrawerHeader>
-          <div className="mx-auto flex w-full max-w-xl flex-col items-center gap-y-2 p-5">
-            {items.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "hover:bg-border/50 flex h-14 w-full cursor-pointer items-center justify-center gap-x-2 rounded-sm px-5",
-                  doesPathMatchHref(pathname, item.href) && "bg-border/50",
-                )}
-              >
-                <p>{item.name}</p>
-              </Link>
-            ))}
-            <div className="flex h-14">
-              {socialLinks.map((link) => (
+          <div className="relative mt-8 px-14 pb-14">
+            <span className="bg-border absolute top-0 left-0 h-px w-full" />
+            <span className="bg-border absolute bottom-14 left-0 h-px w-full" />
+            <span className="bg-border absolute -top-14 left-14 h-full w-px" />
+            <span className="bg-border absolute right-14 bottom-0 h-full w-px" />
+            <span className="absolute right-0 bottom-0 aspect-square h-14">
+              <ThemeToggle />
+            </span>
+            <div className="mx-auto flex w-full flex-col items-center">
+              {items.map((item) => (
                 <Link
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center gap-x-2 rounded-md px-5"
+                  key={item.name}
+                  href={item.href}
+                  className={cn(
+                    "hover:bg-border/50 flex h-14 w-full cursor-pointer items-center justify-center px-5",
+                    doesPathMatchHref(pathname, item.href) && "bg-border/50",
+                  )}
                 >
-                  <link.icon className="size-6" />
+                  <p>{item.name}</p>
                 </Link>
               ))}
-              <ThemeToggle />
+              <div className="flex h-14">
+                {socialLinks.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    target="_blank"
+                    className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center px-5"
+                  >
+                    <link.icon className="size-6" />
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </DrawerContent>
