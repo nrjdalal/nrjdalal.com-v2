@@ -206,7 +206,7 @@ const Component: FC = () => {
 
   return (
     <div className="bg-background sticky top-0 z-50 flex h-14 w-full justify-between border-b">
-      <div className="flex divide-x font-mono">
+      <div className="flex divide-x font-mono font-medium">
         <Link
           href="/"
           className={cn(
