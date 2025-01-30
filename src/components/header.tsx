@@ -200,7 +200,7 @@ const Component: FC = () => {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
 
   return (
-    <div className="bg-background sticky top-0 z-50 flex h-12 w-full justify-between border-b lg:h-14">
+    <div className="bg-background sticky top-0 z-50 flex h-14 w-full justify-between border-b">
       <div className="flex font-mono">
         <Link
           href="/"
