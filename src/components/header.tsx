@@ -47,12 +47,21 @@ const NavigationLinks = ({
           key={item.name}
           href={item.href}
           className={cn(
-            "hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]",
-            pathname === item.href &&
-              "text-foreground border-b-foreground border-b-2 pt-[2px]",
+            "group relative flex h-full items-center px-7.5",
+            pathname === item.href
+              ? "text-foreground"
+              : "hover:text-foreground",
           )}
         >
           {item.name}
+          <span
+            className={cn(
+              "bg-foreground absolute bottom-0 left-0 h-[2px] w-full transition-all duration-500 ease-in-out",
+              pathname === item.href
+                ? "group-hover:w-0"
+                : "w-0 group-hover:w-full",
+            )}
+          />
         </Link>
       ))}
       {socialLinks.map((link) => (
