@@ -1,6 +1,10 @@
+"use client"
+
 import ThemeToggle from "@/components/theme-toggle"
+import { cn } from "@/lib/utils"
 import { RiCodeAiFill, RiGithubFill, RiTwitterXFill } from "@remixicon/react"
 import Link from "next/link"
+import { usePathname } from "next/navigation"
 
 const navItems = [
   { name: "home", href: "/" },
@@ -15,6 +19,8 @@ const socialLinks = [
 ]
 
 export default function Component() {
+  const pathname = usePathname()
+
   return (
     <div className="bg-background sticky top-0 z-50 flex h-14 w-full justify-between border-b">
       <Link
@@ -29,7 +35,11 @@ export default function Component() {
           <Link
             key={item.name}
             href={item.href}
-            className="hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]"
+            className={cn(
+              "hover:text-foreground hover:border-b-foreground flex h-full items-center px-7.5 hover:border-b-2 hover:pt-[2px]",
+              pathname === item.href &&
+                "text-foreground border-b-foreground border-b-2 pt-[2px]",
+            )}
           >
             {item.name}
           </Link>

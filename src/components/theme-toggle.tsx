@@ -21,7 +21,7 @@ export default function ThemeToggle() {
       />
       <label
         htmlFor={id}
-        className="hover:bg-border/50 flex aspect-square h-full cursor-pointer items-center justify-center"
+        className="hover:bg-border/50 hover:text-foreground text-muted-foreground flex aspect-square h-full cursor-pointer items-center justify-center"
         aria-hidden="true"
       >
         <RiSunFill className="size-4 dark:hidden" aria-hidden="true" />
