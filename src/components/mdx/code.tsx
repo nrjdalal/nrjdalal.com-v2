@@ -34,7 +34,7 @@ export default function Component(props: {
       >
         {buttonText}
       </button>
-      <div className="overflow-scroll rounded-md bg-black p-5 text-white">
+      <div className="bg-foreground/95 dark:bg-foreground/5 overflow-scroll rounded-md border p-5 text-sm text-white">
         <code>{props.children}</code>
       </div>
     </div>

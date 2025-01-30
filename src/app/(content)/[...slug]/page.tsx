@@ -27,7 +27,7 @@ export default async function Page({
 
   return (
     <Markdown
-      className="prose mx-auto max-w-screen-md p-5"
+      className="prose dark:prose-invert mx-auto w-screen max-w-screen-md p-5"
       remarkPlugins={[remarkFrontmatter, remarkGfm, remarkToc]}
       rehypePlugins={[
         rehypeSlug,
