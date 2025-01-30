@@ -32,9 +32,9 @@ export default function RootLayout({
         >
           <Header />
           <div className="flex min-h-dvh w-screen">
-            <aside className="hidden w-64 border-r lg:block" />
+            <aside className="hidden min-w-64 border-r lg:block" />
             <main className="flex-1">{children}</main>
-            <aside className="hidden w-14 border-l lg:block" />
+            <aside className="hidden min-w-14 border-l lg:block" />
           </div>
         </ThemeProvider>
       </body>
