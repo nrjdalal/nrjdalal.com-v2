@@ -131,7 +131,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
         <ThemeToggle />
       </div>
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger className="hover:text-foreground text-muted-foreground flex aspect-square h-full cursor-pointer items-center justify-center lg:hidden">
+        <DrawerTrigger className="text-foreground flex h-full w-16 cursor-pointer items-center justify-center lg:hidden">
           <RiMenu4Fill className="size-6" />
         </DrawerTrigger>
         <DrawerContent className="lg:hidden">
