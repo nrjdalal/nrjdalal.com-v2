@@ -131,7 +131,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
         <ThemeToggle />
       </div>
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerTrigger className="text-foreground flex h-full w-16 cursor-pointer items-center justify-center lg:hidden">
+        <DrawerTrigger className="text-foreground flex h-full w-16 cursor-pointer items-center justify-center border-l lg:hidden">
           <RiMenu4Fill className="size-6" />
         </DrawerTrigger>
         <DrawerContent className="lg:hidden">
@@ -206,11 +206,11 @@ const Component: FC = () => {
 
   return (
     <div className="bg-background sticky top-0 z-50 flex h-14 w-full justify-between border-b">
-      <div className="flex font-mono">
+      <div className="flex divide-x font-mono">
         <Link
           href="/"
           className={cn(
-            "hover:bg-border/50 flex h-full min-w-48 cursor-pointer items-center gap-x-2 border-r px-5 lg:min-w-64",
+            "hover:bg-border/50 flex h-full min-w-48 cursor-pointer items-center gap-x-2 px-5 lg:min-w-64",
             pathname.startsWith("/ui") && "hidden",
           )}
         >
@@ -220,7 +220,7 @@ const Component: FC = () => {
         <Link
           href="/ui"
           className={cn(
-            "hover:bg-border/50 flex h-full cursor-pointer items-center gap-x-2 border-r px-5",
+            "hover:bg-border/50 flex h-full cursor-pointer items-center gap-x-2 px-5",
             pathname.startsWith("/ui") && "min-w-48 lg:min-w-64",
           )}
         >
