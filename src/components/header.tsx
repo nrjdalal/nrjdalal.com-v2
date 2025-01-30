@@ -159,7 +159,7 @@ const NavigationLinks: FC<NavigationLinksProps> = ({
                     "group relative flex h-14 w-full items-center justify-center px-7.5",
                     doesPathMatchHref(pathname, item.href)
                       ? "text-foreground"
-                      : "hover:text-foreground",
+                      : "text-muted-foreground hover:text-foreground",
                   )}
                   onMouseEnter={() => setHoveredItem(item.href)}
                   onMouseLeave={() => setHoveredItem(null)}
