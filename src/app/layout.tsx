@@ -1,16 +1,9 @@
+import { fontMono, fontSans } from "@/assets/fonts"
+import Header from "@/components/header"
+import { ThemeProvider } from "@/components/theme-provider"
+import { cn } from "@/lib/utils"
 import type { Metadata } from "next"
-import { Geist, Geist_Mono } from "next/font/google"
 import "./globals.css"
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-})
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-})
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +16,26 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={cn(
+          "min-h-dvh font-sans antialiased",
+          fontSans.variable,
+          fontMono.variable,
+        )}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <div className="flex min-h-dvh w-screen">
+            <aside className="hidden min-w-80.25 border-r lg:block" />
+            <main className="flex-1">{children}</main>
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )
