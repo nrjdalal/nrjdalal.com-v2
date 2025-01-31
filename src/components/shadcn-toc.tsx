@@ -107,7 +107,6 @@ function Tree({ tree, level = 1, activeItem }: TreeProps) {
                 item.url === `#${activeItem}`
                   ? "text-foreground font-medium"
                   : "text-muted-foreground",
-                level === 1 && "border-b font-medium",
               )}
             >
               {item.title}
