@@ -40,6 +40,7 @@
         "embla-carousel-react": "^8.5.2",
         "input-otp": "^1.4.2",
         "lucide-react": "^0.474.0",
+        "mdast-util-toc": "^7.1.0",
         "next": "15.1.6",
         "next-mdx-remote-client": "^2.0.0",
         "next-themes": "^0.4.4",
@@ -441,6 +442,8 @@
     "@types/react": ["@types/react@19.0.8", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-9P/o1IGdfmQxrujGbIMDyYaaCykhLKc0NGCtYcECNUr9UAaDe4gwvV9bR6tvd5Br1SG0j+PBpbKr2UYY8CwqSw=="],
 
     "@types/react-dom": ["@types/react-dom@19.0.3", "", { "peerDependencies": { "@types/react": "^19.0.0" } }, "sha512-0Knk+HJiMP/qOZgMyNFamlIjw9OFCsyC2ZbigmEEyXXixgre6IQpm/4V+r3qH4GC1JPvRJKInw+on2rV6YZLeA=="],
+
+    "@types/ungap__structured-clone": ["@types/ungap__structured-clone@1.2.0", "", {}, "sha512-ZoaihZNLeZSxESbk9PUAPZOlSpcKx81I1+4emtULDVmBLkYutTcMlCj2K9VNlf9EWODxdO6gkAqEaLorXwZQVA=="],
 
     "@types/unist": ["@types/unist@3.0.3", "", {}, "sha512-ko/gIFJRv177XgZsZcBwnqJN5x/Gien8qNOn0D5bQU/zAzVf9Zt3BlcUiLqhV9y4ARk0GbT3tnUiPNgnTXzc/Q=="],
 
@@ -1107,6 +1110,8 @@
     "mdast-util-to-markdown": ["mdast-util-to-markdown@2.1.2", "", { "dependencies": { "@types/mdast": "^4.0.0", "@types/unist": "^3.0.0", "longest-streak": "^3.0.0", "mdast-util-phrasing": "^4.0.0", "mdast-util-to-string": "^4.0.0", "micromark-util-classify-character": "^2.0.0", "micromark-util-decode-string": "^2.0.0", "unist-util-visit": "^5.0.0", "zwitch": "^2.0.0" } }, "sha512-xj68wMTvGXVOKonmog6LwyJKrYXZPvlwabaryTjLh9LuvovB/KAH+kvi8Gjj+7rJjsFi23nkUxRQv1KqSroMqA=="],
 
     "mdast-util-to-string": ["mdast-util-to-string@4.0.0", "", { "dependencies": { "@types/mdast": "^4.0.0" } }, "sha512-0H44vDimn51F0YwvxSJSm0eCDOJTRlmN0R1yBh4HLj9wiV1Dn0QoXGbvFAWj2hSItVTlCmBF1hqKlIyUBVFLPg=="],
+
+    "mdast-util-toc": ["mdast-util-toc@7.1.0", "", { "dependencies": { "@types/mdast": "^4.0.0", "@types/ungap__structured-clone": "^1.0.0", "@ungap/structured-clone": "^1.0.0", "github-slugger": "^2.0.0", "mdast-util-to-string": "^4.0.0", "unist-util-is": "^6.0.0", "unist-util-visit": "^5.0.0" } }, "sha512-2TVKotOQzqdY7THOdn2gGzS9d1Sdd66bvxUyw3aNpWfcPXCLYSJCCgfPy30sEtuzkDraJgqF35dzgmz6xlvH/w=="],
 
     "meow": ["meow@12.1.1", "", {}, "sha512-BhXM0Au22RwUneMPwSCnyhTOizdWoIEPU9sp0Aqa1PnDMR5Wv2FGXYDjuzJEIX+Eo2Rb8xuYe5jrnm5QowQFkw=="],
 
