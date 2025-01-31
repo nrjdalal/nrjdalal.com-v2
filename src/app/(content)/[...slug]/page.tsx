@@ -30,9 +30,9 @@ export default async function Page({
 
   return (
     <div className="relative flex">
-      <div className="w-2/3">
+      <div className="flex w-screen justify-center lg:w-full xl:w-2/3">
         <Markdown
-          className="prose dark:prose-invert mt-5 w-full max-w-screen-md p-5 2xl:mx-24"
+          className="prose dark:prose-invert mt-5 w-full max-w-screen-md p-5"
           remarkPlugins={[remarkFrontmatter, remarkGfm]}
           rehypePlugins={[
             rehypeSlug,
