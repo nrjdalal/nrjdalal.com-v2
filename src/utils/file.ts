@@ -11,6 +11,7 @@ export const getSourceBySlug = async <T extends string>({
   slug: string | string[]
 }): Promise<{
   format: T
+  location: string
   source: string
 } | null> => {
   try {
@@ -22,6 +23,7 @@ export const getSourceBySlug = async <T extends string>({
       if (fs.existsSync(filePath)) {
         return {
           format,
+          location: directory + "/" + slugPath + "." + format,
           source: await fs.promises.readFile(filePath, "utf8"),
         }
       }
